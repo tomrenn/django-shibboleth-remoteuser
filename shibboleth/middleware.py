@@ -1,8 +1,10 @@
+from __future__ import absolute_import
 from django.contrib.auth.middleware import RemoteUserMiddleware
 from django.contrib import auth
 from django.core.exceptions import ImproperlyConfigured
 
-from shibboleth.app_settings import SHIB_ATTRIBUTE_MAP, LOGOUT_SESSION_KEY
+from .app_settings import SHIB_ATTRIBUTE_MAP, LOGOUT_SESSION_KEY
+
 
 class ShibbolethRemoteUserMiddleware(RemoteUserMiddleware):
     """
@@ -25,7 +27,7 @@ class ShibbolethRemoteUserMiddleware(RemoteUserMiddleware):
             return
         else:
             #Delete the shib reauth session key if present.
-	        request.session.pop(LOGOUT_SESSION_KEY, None)
+            request.session.pop(LOGOUT_SESSION_KEY, None)
 
         #Locate the remote user header.
         try:
@@ -97,6 +99,7 @@ class ShibbolethRemoteUserMiddleware(RemoteUserMiddleware):
                 if required:
                     error = True
         return shib_attrs, error
+
 
 class ShibbolethValidationError(Exception):
     pass

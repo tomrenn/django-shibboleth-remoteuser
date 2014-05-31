@@ -1,5 +1,7 @@
+from __future__ import absolute_import
 from django.core.urlresolvers import reverse
 from urllib import quote
+
 
 def login_link(request):
     """
@@ -10,6 +12,7 @@ def login_link(request):
     login = reverse('shibboleth:login')
     ll = "%s?target=%s" % (login, full_path)
     return { 'login_link': ll }
+
 
 def logout_link(request, *args):
     """

@@ -1,5 +1,5 @@
 # -*- coding: utf-8 -*-
-
+from __future__ import absolute_import
 import os
 
 from django.conf import settings
@@ -59,7 +59,6 @@ settings.ROOT_URLCONF = 'shibboleth.urls'
 settings.SHIBBOLETH_LOGOUT_URL = 'https://sso.school.edu/logout?next=%s'
 settings.SHIBBOLETH_LOGOUT_REDIRECT_URL = 'http://school.edu/'
 
-from shibboleth.views import ShibbolethView
 
 def read(fname):
     return open(os.path.join(os.path.dirname(__file__), fname)).read()
